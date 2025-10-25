@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Backend Server
+  server:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    container_name: social-media-server
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_DB=${MONGO_DB}
+      - PORT=4000
+      - JWT_KEY=${JWT_KEY}
+    volumes:
+      - ./Server/public:/app/public
+    networks:
+      - social-media-network
+
+  # Frontend Client
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: social-media-client
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - social-media-network
+
+networks:
+  social-media-network:
+    driver: bridge
+
+volumes:
+  server_uploads:
