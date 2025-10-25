@@ -12,9 +12,9 @@ services:
       - "4000:4000"
     environment:
       - NODE_ENV=production
-      - MONGO_DB=${MONGO_DB}
+      - MONGO_DB=mongodb+srv://kashiweb:R4GMyRfTczIkrbRK@socialwebapp.83uevtg.mongodb.net/?appName=socialwebapp
       - PORT=4000
-      - JWT_KEY=${JWT_KEY}
+      - JWT_KEY=dukhil9p8804ippo&%4%
     volumes:
       - ./Server/public:/app/public
     networks:
