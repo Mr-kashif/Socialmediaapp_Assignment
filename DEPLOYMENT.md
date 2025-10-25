@@ -18,7 +18,7 @@ This guide provides step-by-step instructions to deploy your Social Media Web Ap
 ### 1. Initialize Git Repository (if not already done)
 
 ```bash
-cd E:\Social-Media-Web-App-Mern-Stack--master
+cd E:\Socialmediaapp_Assignment
 git init
 git add .
 git commit -m "Initial commit: MERN Social Media App with Docker support"
@@ -27,7 +27,7 @@ git commit -m "Initial commit: MERN Social Media App with Docker support"
 ### 2. Create GitHub Repository
 
 1. Go to [GitHub](https://github.com) and create a new repository
-2. Name it: `social-media-mern-app` (or your preferred name)
+2. Name it: `Socialmediaapp_Assignment` (or your preferred name)
 3. Don't initialize with README (we already have files)
 
 ### 3. Push to GitHub
@@ -38,7 +38,7 @@ git branch -M main
 git push -u origin main
 ```
 
-**Important:** Make sure your `.env` file is NOT pushed to GitHub (it's in `.gitignore`)
+**Important:** Make sure your `.env` file is NOT pushed to GitHub (add to `.gitignore`)
 
 ---
 
@@ -52,15 +52,15 @@ git push -u origin main
 4. Configure:
    - **Name:** `social-media-app`
    - **AMI:** Ubuntu Server 22.04 LTS (Free tier eligible)
-   - **Instance Type:** t2.medium or t2.small (minimum)
+   - **Instance Type:** t2.medium (RECOMMENDED for build process)
    - **Key Pair:** Create new or use existing (download `.pem` file)
    - **Security Group:** Create with these rules:
-     - SSH (22) - Your IP
-     - HTTP (80) - 0.0.0.0/0
-     - HTTPS (443) - 0.0.0.0/0
-     - Custom TCP (4000) - 0.0.0.0/0 (for backend API)
+     - **SSH (22)** - Your IP only (for security)
+     - **HTTP (80)** - 0.0.0.0/0 (Allow all - for friends access)
+     - **HTTPS (443)** - 0.0.0.0/0 (for future SSL)
+     - ~~Custom TCP (4000)~~ - **DON'T open** (nginx will proxy)
 
-5. **Storage:** 20 GB minimum
+5. **Storage:** 20 GB minimum (General Purpose SSD)
 6. Click **Launch Instance**
 
 ### 2. Connect to EC2 Instance
